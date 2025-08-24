@@ -24,4 +24,29 @@ class Solution:
         return res
 
 
+#DSA recursion
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        
+        def solve(i,total,brackets,res):
+            if i>=len(brackets):
+                if total==0:
+                    res.append("".join(brackets))
+                return
+            
+            if total>(len(brackets)//2):
+                return
+            elif total<0:
+                return
+            
+            brackets[i]='('
+            sum=total+1
+            solve(i+1,sum,brackets,res)
+            brackets[i]=')'
+            sum=total-1
+            solve(i+1,sum,brackets,res)
+        brackets=[""]*(n*2)
+        res=[]
+        solve(0,0,brackets,res)
+        return res
         
